@@ -18,9 +18,21 @@ searchBtn.addEventListener("click", async () => {
  return;
  }
 
+
+ // AFFICHAGE DES DONNÉES MÉTÉO EN HTML
  resultDiv.innerHTML = `
  <h2>${data.name}</h2>
  <p>Température : ${data.main.temp}°C</p>
  <p>Météo : ${data.weather[0].description}</p>
  `;
 });
+
+// ICÔNE DE LA  MÉTÉO
+const icon = data.weather[0].icon;
+resultDiv.innerHTML = `
+ <h2>${data.name}</h2>
+ <p>${data.main.temp}°C</p>
+ <p>${data.weather[0].description}</p>
+ <img src="https://openweathermap.org/img/wn/${icon}@2x.png" />
+`;
+
