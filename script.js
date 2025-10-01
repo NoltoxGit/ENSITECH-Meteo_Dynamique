@@ -36,3 +36,14 @@ resultDiv.innerHTML = `
  <img src="https://openweathermap.org/img/wn/${icon}@2x.png" />
 `;
 
+// STOCKAGE EN LOCALSTORAGE
+localStorage.setItem("lastCity", city);
+
+// CHARGEMENT DE LA PAGE
+window.addEventListener("load", () => {
+ const lastCity = localStorage.getItem("lastCity");
+ if (lastCity) {
+ document.getElementById("cityInput").value = lastCity;
+ searchBtn.click();
+ }
+});
