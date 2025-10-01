@@ -19,27 +19,27 @@ searchBtn.addEventListener("click", async () => {
  }
 
 
- // AFFICHAGE DES DONNÉES MÉTÉO EN HTML
+ // ICÔNE DE LA MÉTÉO ET AFFICHAGE DES DONNÉES MÉTÉO EN HTML
+ const icon = data.weather[0].icon;
  resultDiv.innerHTML = `
- <h2>${data.name}</h2>
- <p>Température : ${data.main.temp}°C</p>
- <p>Météo : ${data.weather[0].description}</p>
- `;
-});
-
-// ICÔNE DE LA  MÉTÉO
-const icon = data.weather[0].icon;
-resultDiv.innerHTML = `
  <h2>${data.name}</h2>
  <p>${data.main.temp}°C</p>
  <p>${data.weather[0].description}</p>
  <img src="https://openweathermap.org/img/wn/${icon}@2x.png" />
-`;
+ `;
 
-// STOCKAGE EN LOCALSTORAGE
-localStorage.setItem("lastCity", city);
+ // STOCKAGE EN LOCALSTORAGE
+ localStorage.setItem("lastCity", city);
+});
 
 // CHARGEMENT DE LA PAGE
+window.addEventListener("load", () => {
+ const lastCity = localStorage.getItem("lastCity");
+ if (lastCity) {
+ document.getElementById("cityInput").value = lastCity;
+ searchBtn.click();
+ }
+});
 window.addEventListener("load", () => {
  const lastCity = localStorage.getItem("lastCity");
  if (lastCity) {
